@@ -1,0 +1,185 @@
+:root {
+  --papel: #eef1f4;
+  --tinta: #14213d;
+  --tinta-suave: #4a5670;
+  --linea: #c5ccd8;
+  --acento: #2347e8;
+  --acento-fondo: #dfe5fb;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #0f1626;
+    --tinta: #e8ecf5;
+    --tinta-suave: #a2adc4;
+    --linea: #2a3550;
+    --acento: #8ea4ff;
+    --acento-fondo: #1b2542;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--papel); }
+
+body {
+  margin: 0;
+  color: var(--tinta);
+  background: var(--papel);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.pagina {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+}
+
+h1, h2 {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  line-height: 1.1;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 8vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+a { color: inherit; }
+
+a:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Cabecera */
+.cabecera {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: end;
+  padding-bottom: 3rem;
+}
+
+.bio {
+  margin: 1.25rem 0 0;
+  max-width: 32rem;
+  color: var(--tinta-suave);
+}
+
+.foto {
+  display: block;
+  width: 240px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--acento-fondo);
+  box-shadow: 10px 10px 0 var(--acento);
+}
+
+/* Secciones */
+section { margin-top: 3rem; }
+
+/* Proyectos: una fila por proyecto, separadas por línea */
+.lista-proyectos,
+.lista-enlaces {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lista-proyectos { border-bottom: 1px solid var(--linea); }
+
+.proyecto {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.15rem 1.5rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--linea);
+  text-decoration: none;
+}
+
+.proyecto-titulo {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.proyecto:hover .proyecto-titulo,
+.proyecto:focus-visible .proyecto-titulo {
+  color: var(--acento);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.proyecto-desc {
+  grid-column: 1;
+  color: var(--tinta-suave);
+}
+
+.etiquetas {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+/* Enlaces */
+.lista-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+.lista-enlaces a {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--acento);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.lista-enlaces a:hover { color: var(--acento); }
+
+.pie {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--linea);
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+/* Móvil */
+@media (max-width: 40rem) {
+  .pagina { padding-top: 2.5rem; }
+
+  .cabecera {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .foto {
+    order: -1;
+    width: 160px;
+    height: 200px;
+    box-shadow: 7px 7px 0 var(--acento);
+  }
+
+  .proyecto { grid-template-columns: 1fr; }
+  .etiquetas { grid-column: 1; grid-row: auto; margin-top: 0.25rem; }
+}
